@@ -1,0 +1,8 @@
+https://gamedevelopment.tutsplus.com/tutorials/positioning-on-screen-indicators-to-point-to-off-screen-targets--gamedev-6644
+https://gamedevelopment.tutsplus.com/tutorials/dynamic-sequential-soundtracks-for-games--gamedev-11170
+https://gamedevelopment.tutsplus.com/tutorials/how-to-use-bsp-trees-to-generate-game-maps--gamedev-12268
+https://gamedevelopment.tutsplus.com/tutorials/how-to-code-monster-loot-drops--cms-20449
+https://gamedevelopment.tutsplus.com/tutorials/how-to-use-tile-bitmasking-to-auto-tile-your-level-layouts--cms-25673
+https://gamedevelopment.tutsplus.com/tutorials/make-your-game-pop-with-particle-effects-and-quadtrees--gamedev-2138
+https://gamedevelopment.tutsplus.com/tutorials/quick-tip-use-quadtrees-to-detect-likely-collisions-in-2d-space--gamedev-374
+https://github.com/scalecube/socketio
