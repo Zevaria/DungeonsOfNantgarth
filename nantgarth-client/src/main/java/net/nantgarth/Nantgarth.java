@@ -1,15 +1,14 @@
 package net.nantgarth;
 
-import java.util.Random;
-
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
+import net.nantgarth.gfx.Shader;
 import net.nantgarth.gfx.Window;
 import net.nantgarth.input.Input;
 import net.nantgarth.input.Input.MouseState;
-import net.nantgarth.math.Vector3f;
+import net.nantgarth.math.Matrix4f;
 
 public class Nantgarth {
 
@@ -18,11 +17,15 @@ public class Nantgarth {
 		
 		GL.createCapabilities();
 		
-		Random r = new Random();
-		Vector3f c1 = new Vector3f(r.nextFloat(), r.nextFloat(), r.nextFloat());
-		Vector3f c2 = new Vector3f(r.nextFloat(), r.nextFloat(), r.nextFloat());
-		Vector3f c3 = new Vector3f(r.nextFloat(), r.nextFloat(), r.nextFloat());
+		Shader shader = Shader.load("res/shaders/test.vs", "res/shaders/test.fs");
+
+		Matrix4f ortho = Matrix4f.ortho(-640, 640, -360, 360, -1, 1);
+
+		float x = 0.0f * 200f;
+		float y = 0.5f * 200f;
 		
+		shader.bind();
+		shader.setMatrix4f("projection", ortho);
 		while(Window.open()) {
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 			
@@ -33,24 +36,17 @@ public class Nantgarth {
 			if(mb1.pressed)  System.out.println("Mouse 1 pressed at " + mb1.mx + ", " + mb1.my);
 			if(mb1.released) System.out.println("Mouse 1 released at " + mb1.mx + ", " + mb1.my);
 			
-			if(mb1.pressed) {
-				c1 = new Vector3f(r.nextFloat(), r.nextFloat(), r.nextFloat());
-				c2 = new Vector3f(r.nextFloat(), r.nextFloat(), r.nextFloat());
-				c3 = new Vector3f(r.nextFloat(), r.nextFloat(), r.nextFloat());
+			if(mb1.held) {
+				x = mb1.mx - 640f;
+				y = -(mb1.my - 360f);
 			}
 			
 			GL11.glBegin(GL11.GL_TRIANGLES);
 			
-			GL11.glColor3f(c1.x, c1.y, c1.z);
-			GL11.glVertex2f(-0.5f, -0.5f);
-
-			GL11.glColor3f(c2.x, c2.y, c2.z);
-			GL11.glVertex2f( 0.5f, -0.5f);
+			GL11.glVertex2f(-0.5f * 200f, -0.5f * 200f);
+			GL11.glVertex2f( 0.5f * 200f, -0.5f * 200f);
 			
-			float x = (((float)mb1.mx / 1280f) * 2f) - 1;
-			float y = (((float)mb1.my / 720f)  * 2f) - 1;
-			GL11.glColor3f((x + 1f) / 2f, c3.y, (y + 1f) / 2f);
-			GL11.glVertex2f(x, -y);
+			GL11.glVertex2f(x, y);
 			
 			GL11.glEnd();
 			
