@@ -40,6 +40,12 @@ public class Shader {
 		GL20.glUseProgram(0);
 	}
 
+	/**
+	 * Given the source code of a shader, create a shader program and checks for errors.
+	 * @param vertSource The source of the vertex shader.
+	 * @param fragSource The source of the fragment shader.
+	 * @return The ID of the newly created shader program.
+	 */
 	private int create(String vertSource, String fragSource) {
 		int program = GL20.glCreateProgram();
 		int vertID = GL20.glCreateShader(GL20.GL_VERTEX_SHADER);
